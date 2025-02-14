@@ -36,15 +36,16 @@ const MyNavBar = (props) => {
             <Form className="d-flex">
               <Form.Control
                 type="search"
-                placeholder="Search"
+                placeholder="Search a city"
                 className="me-2"
                 aria-label="Search"
                 id="searchBar"
                 value={citySearch}
                 onChange={(e) => SetCitySearch(e.target.value)}
+                required
               />
               <Button
-                variant="outline-success"
+                variant="outline-info"
                 onClick={() => {
                   FetchCityWeather(citySearch);
                   clearForm();
