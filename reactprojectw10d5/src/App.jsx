@@ -4,6 +4,7 @@ import MyNavBar from "./components/MyNavBar";
 //import WeatherCard from "./components/WeatherCard";
 import { useState } from "react";
 import MyHomePage from "./components/MyHomePage";
+import MyFooter from "./components/MyFooter";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MyCity from "./components/MyCity";
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<MyHomePage long={long} lat={lat} />} />
         <Route path="/MyCity" element={<MyCity long={9.1896346} lat={45.4641943} />} />
       </Routes>
+      <MyFooter />
     </BrowserRouter>
   );
 }
