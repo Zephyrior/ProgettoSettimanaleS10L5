@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 const MyNavBar = (props) => {
   const [citySearch, SetCitySearch] = useState("");
+  // const navigate = useNavigate();
 
   const clearForm = () => {
     SetCitySearch("");
@@ -26,12 +28,18 @@ const MyNavBar = (props) => {
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container fluid>
-          <Navbar.Brand href="#">My Weather App</Navbar.Brand>
+          <NavLink className={"navbar-brand"} to={"/"}>
+            My Weather App
+          </NavLink>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
-              <Nav.Link href="#action1">Home</Nav.Link>
-              <Nav.Link href="#action2">My City</Nav.Link>
+              <NavLink className={"nav-link"} to={"/"}>
+                Home
+              </NavLink>
+              <NavLink className={"nav-link"} to={"/mycity"}>
+                My City
+              </NavLink>
             </Nav>
             <Form className="d-flex">
               <Form.Control

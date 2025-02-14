@@ -39,6 +39,7 @@ const WeatherCard = (props) => {
         setTemp(city.main);
         setCountry(city.sys);
         setWeather(city.weather[0]);
+        props.fetchMyCity(city.name);
       } else {
         throw new Error();
       }
@@ -76,7 +77,7 @@ const WeatherCard = (props) => {
   return (
     <>
       <Row className="text-center d-flex justify-content-center mt-5">
-        <h2>Today&apos;s Forecast:</h2>
+        <h2>{props.header}</h2>
         <Col xs={5} className="border rounded-5 px-2 py-4" style={{ backgroundColor: "paleturquoise" }}>
           <Row className="d-flex align-items-center">
             <Col xs={8}>
@@ -113,7 +114,7 @@ const WeatherCard = (props) => {
       </Row>
 
       <Row className="text-center d-flex justify-content-center mt-5">
-        <h2>Forecast for the next hours:</h2>
+        <h2>{props.header2}</h2>
         <Col xs={5} className="border rounded-5 px-2 py-4" style={{ backgroundColor: "paleturquoise" }}>
           <Row xs={5}>
             {cityForecast.map((city, index) => (
