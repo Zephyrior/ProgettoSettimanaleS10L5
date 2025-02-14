@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Col, Row, Spinner } from "react-bootstrap";
-import { Cloud, CloudRain, Snow, Sun } from "react-bootstrap-icons";
+import { Cloud, CloudFog2, CloudRain, Snow, Sun } from "react-bootstrap-icons";
 
 const WeatherCard = (props) => {
   const [city, setCity] = useState([]);
@@ -20,6 +20,7 @@ const WeatherCard = (props) => {
     if (iconSens.includes("clear")) return <Sun />;
     if (iconSens.includes("storm")) return <CloudRain />;
     if (iconSens.includes("snow")) return <Snow />;
+    if (iconSens.includes("fog")) return <CloudFog2 />;
     return null;
   };
 
