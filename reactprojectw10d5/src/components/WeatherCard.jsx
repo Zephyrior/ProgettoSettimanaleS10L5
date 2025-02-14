@@ -76,7 +76,7 @@ const WeatherCard = (props) => {
   return (
     <>
       <Row className="text-center d-flex justify-content-center mt-5">
-        <h2>Today's Forecast:</h2>
+        <h2>Today&apos;s Forecast:</h2>
         <Col xs={5} className="border rounded-5 px-2 py-4" style={{ backgroundColor: "paleturquoise" }}>
           <Row className="d-flex align-items-center">
             <Col xs={8}>

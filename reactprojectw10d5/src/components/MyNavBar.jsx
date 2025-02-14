@@ -3,6 +3,11 @@ import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
 
 const MyNavBar = (props) => {
   const [citySearch, SetCitySearch] = useState("");
+
+  const clearForm = () => {
+    SetCitySearch("");
+  };
+
   const FetchCityWeather = async () => {
     try {
       const resp = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${citySearch}&appid=0699717248c28b0564c5305bc7788a42`);
@@ -38,7 +43,13 @@ const MyNavBar = (props) => {
                 value={citySearch}
                 onChange={(e) => SetCitySearch(e.target.value)}
               />
-              <Button variant="outline-success" onClick={() => FetchCityWeather(citySearch)}>
+              <Button
+                variant="outline-success"
+                onClick={() => {
+                  FetchCityWeather(citySearch);
+                  clearForm();
+                }}
+              >
                 Search
               </Button>
             </Form>
