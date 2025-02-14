@@ -29,7 +29,7 @@ const MyNavBar = (props) => {
       <Navbar expand="lg" className="bg-body-tertiary p-0">
         <Container className="p-3" fluid style={{ backgroundColor: "paleturquoise" }}>
           <NavLink className={"navbar-brand"} to={"/"}>
-            My Weather App
+            <strong> My Weather App </strong>
           </NavLink>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
