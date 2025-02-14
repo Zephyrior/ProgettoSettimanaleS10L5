@@ -8,6 +8,7 @@ const WeatherCard = (props) => {
   const [temp, setTemp] = useState([]);
   const [weather, setWeather] = useState([]);
   const [cityForecast, setCityForecast] = useState([]);
+  const [cityForecast5days, setCityForecast5days] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleIcon = (icon) => {
@@ -58,6 +59,9 @@ const WeatherCard = (props) => {
       if (resp.ok) {
         const cityForecast = await resp.json();
         console.log(cityForecast.list.slice(0, 5));
+        console.log(cityForecast.list.filter((cityForecast) => cityForecast.dt_txt.includes("00:00:00")));
+        setCityForecast5days(cityForecast.list.filter((cityForecast) => cityForecast.dt_txt.includes("00:00:00")));
+
         setCityForecast(cityForecast.list.slice(0, 5));
         setIsLoading(false);
       } else {
@@ -79,7 +83,7 @@ const WeatherCard = (props) => {
     <>
       <Row className="text-center d-flex justify-content-center mt-5">
         <h2>{props.header}</h2>
-        <Col xs={5} className="border rounded-5 px-2 py-4" style={{ backgroundColor: "paleturquoise" }}>
+        <Col xs={5} className="border rounded-5 px-2 py-4" style={{ backgroundColor: "paleturquoise", opacity: "0.7" }}>
           <Row className="d-flex align-items-center">
             <Col md={8}>
               {isLoading ? (
@@ -116,7 +120,7 @@ const WeatherCard = (props) => {
 
       <Row className="text-center d-flex justify-content-center mt-5">
         <h2>{props.header2}</h2>
-        <Col xs={5} className="border rounded-5 px-2 py-4" style={{ backgroundColor: "paleturquoise" }}>
+        <Col xs={5} className="border rounded-5 px-2 py-4" style={{ backgroundColor: "paleturquoise", opacity: "0.7" }}>
           <Row xs={1} md={5}>
             {cityForecast.map((city, index) => (
               <Col key={index}>
@@ -126,7 +130,33 @@ const WeatherCard = (props) => {
                   </Spinner>
                 ) : (
                   <>
-                    <h5>H {city.dt_txt.split(" ")[1].split(":")[0]}</h5>
+                    <h5 className="pb-1" style={{ textDecoration: "underline" }}>
+                      H {city.dt_txt.split(" ")[1].split(":")[0]}
+                    </h5>
+                    <h4>{convTemp(city.main.temp)} °C</h4>
+                    <p className="mb-0">{city.weather[0].description}</p>
+                    <p style={{ fontSize: "3rem" }}>{handleIcon(city.weather[0].main)}</p>
+                  </>
+                )}
+              </Col>
+            ))}
+          </Row>
+        </Col>
+      </Row>
+
+      <Row className="text-center d-flex justify-content-center mt-5">
+        <h2>{props.header3}</h2>
+        <Col xs={5} className="border rounded-5 px-2 py-4" style={{ backgroundColor: "paleturquoise", opacity: "0.7" }}>
+          <Row xs={1} md={5}>
+            {cityForecast5days.map((city, index) => (
+              <Col key={index}>
+                {isLoading ? (
+                  <Spinner animation="border" role="status" variant="primary" className="d-block mx-auto">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                ) : (
+                  <>
+                    <h5 className="pb-1">{city.dt_txt.slice(5, 10).replace("-", "/")}</h5>
                     <h4>{convTemp(city.main.temp)} °C</h4>
                     <p className="mb-0">{city.weather[0].description}</p>
                     <p style={{ fontSize: "3rem" }}>{handleIcon(city.weather[0].main)}</p>

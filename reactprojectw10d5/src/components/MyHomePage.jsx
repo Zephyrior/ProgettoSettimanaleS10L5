@@ -13,6 +13,7 @@ const MyHomePage = (props) => {
         lat={props.lat}
         header={`${myCity}'s Weather Forecast:`}
         header2="Forecast for the next hours:"
+        header3={`${myCity} in the next 5 days`}
         fetchMyCity={fetchMyCity}
       />
     </>

@@ -1,3 +1,5 @@
 body {
   font-family: "Montserrat", sans-serif;
+  background-image: url("./src/assets/clouds.png");
+  background-size: cover;
 }
