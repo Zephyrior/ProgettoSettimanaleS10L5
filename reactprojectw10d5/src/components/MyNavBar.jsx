@@ -1,13 +1,21 @@
 import { useState } from "react";
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 const MyNavBar = (props) => {
   const [citySearch, SetCitySearch] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
 
   const clearForm = () => {
     SetCitySearch("");
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    FetchCityWeather(citySearch);
+    clearForm();
+    navigate("/");
   };
 
   const FetchCityWeather = async () => {
@@ -34,32 +42,26 @@ const MyNavBar = (props) => {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
-              <NavLink className={"nav-link"} to={"/"}>
+              <NavLink className={"nav-link"} style={{ textDecoration: location.pathname === "/" ? "underline" : "none" }} to={"/"}>
                 Home
               </NavLink>
-              <NavLink className={"nav-link"} to={"/mycity"}>
+              <NavLink className={"nav-link"} style={{ textDecoration: location.pathname === "/mycity" ? "underline" : "none" }} to={"/mycity"}>
                 My City
               </NavLink>
             </Nav>
-            <Form className="d-flex">
+            <Form onSubmit={handleSubmit} className="d-flex">
               <Form.Control
-                type="search"
+                style={{ borderRadius: "50px" }}
+                type="text"
                 placeholder="Search a city"
                 className="me-2"
-                aria-label="Search"
+                aria-label="Search rounded-5"
                 id="searchBar"
                 value={citySearch}
                 onChange={(e) => SetCitySearch(e.target.value)}
                 required
               />
-              <Button
-                variant="outline-info"
-                onClick={() => {
-                  FetchCityWeather(citySearch);
-                  clearForm();
-                  navigate("/");
-                }}
-              >
+              <Button type="submit" variant="outline-info">
                 Search
               </Button>
             </Form>
