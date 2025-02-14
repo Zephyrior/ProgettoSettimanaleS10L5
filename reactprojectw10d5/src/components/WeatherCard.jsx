@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { Col, Row, Spinner } from "react-bootstrap";
 import { Cloud, CloudRain, Snow, Sun } from "react-bootstrap-icons";
 
-const WeatherCard = () => {
-  const [long, setLong] = useState("12.4829321");
-  const [lat, setLat] = useState("41.8933203");
+const WeatherCard = (props) => {
   const [city, setCity] = useState([]);
   const [country, setCountry] = useState([]);
   const [temp, setTemp] = useState([]);
@@ -32,7 +30,7 @@ const WeatherCard = () => {
   const fetchCity = async () => {
     setIsLoading(true);
     try {
-      const resp = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=0699717248c28b0564c5305bc7788a42`);
+      const resp = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${props.lat}&lon=${props.long}&appid=0699717248c28b0564c5305bc7788a42`);
       if (resp.ok) {
         const city = await resp.json();
         console.log(city);
@@ -54,7 +52,7 @@ const WeatherCard = () => {
   const fetchCityForeCast = async () => {
     setIsLoading(true);
     try {
-      const resp = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=0699717248c28b0564c5305bc7788a42`);
+      const resp = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${props.lat}&lon=${props.long}&appid=0699717248c28b0564c5305bc7788a42`);
       if (resp.ok) {
         const cityForecast = await resp.json();
         console.log(cityForecast.list.slice(0, 5));
@@ -74,7 +72,7 @@ const WeatherCard = () => {
     fetchCity();
     fetchCityForeCast();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lat, long]);
+  }, [props.lat, props.long]);
   return (
     <>
       <Row className="text-center d-flex justify-content-center">
