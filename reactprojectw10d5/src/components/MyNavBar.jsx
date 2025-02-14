@@ -13,7 +13,7 @@ const MyNavBar = () => {
               <Nav.Link href="#action2">My City</Nav.Link>
             </Nav>
             <Form className="d-flex">
-              <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
+              <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" id="searchBar" />
               <Button variant="outline-success">Search</Button>
             </Form>
           </Navbar.Collapse>
