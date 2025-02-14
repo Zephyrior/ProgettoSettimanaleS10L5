@@ -26,8 +26,8 @@ const MyNavBar = (props) => {
   };
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary">
-        <Container fluid>
+      <Navbar expand="lg" className="bg-body-tertiary p-0">
+        <Container className="p-3" fluid style={{ backgroundColor: "paleturquoise" }}>
           <NavLink className={"navbar-brand"} to={"/"}>
             My Weather App
           </NavLink>
