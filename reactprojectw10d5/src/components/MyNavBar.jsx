@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Button, Container, Form, Nav, Navbar } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const MyNavBar = (props) => {
   const [citySearch, SetCitySearch] = useState("");
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const clearForm = () => {
     SetCitySearch("");
@@ -57,6 +57,7 @@ const MyNavBar = (props) => {
                 onClick={() => {
                   FetchCityWeather(citySearch);
                   clearForm();
+                  navigate("/");
                 }}
               >
                 Search

@@ -15,6 +15,7 @@ const WeatherCard = (props) => {
     const iconSens = icon.toLowerCase();
     if (iconSens.includes("clouds")) return <Cloud />;
     if (iconSens.includes("rain")) return <CloudRain />;
+    if (iconSens.includes("mist")) return <CloudRain />;
     if (iconSens.includes("clear")) return <Sun />;
     if (iconSens.includes("storm")) return <CloudRain />;
     if (iconSens.includes("snow")) return <Snow />;
@@ -80,7 +81,7 @@ const WeatherCard = (props) => {
         <h2>{props.header}</h2>
         <Col xs={5} className="border rounded-5 px-2 py-4" style={{ backgroundColor: "paleturquoise" }}>
           <Row className="d-flex align-items-center">
-            <Col xs={8}>
+            <Col md={8}>
               {isLoading ? (
                 <Spinner animation="border" role="status" variant="primary" className="d-block mx-auto">
                   <span className="visually-hidden">Loading...</span>
@@ -95,7 +96,7 @@ const WeatherCard = (props) => {
                 </div>
               )}
             </Col>
-            <Col xs={4}>
+            <Col md={4}>
               {isLoading ? (
                 <Spinner animation="border" role="status" variant="primary" className="d-block mx-auto">
                   <span className="visually-hidden">Loading...</span>
@@ -116,7 +117,7 @@ const WeatherCard = (props) => {
       <Row className="text-center d-flex justify-content-center mt-5">
         <h2>{props.header2}</h2>
         <Col xs={5} className="border rounded-5 px-2 py-4" style={{ backgroundColor: "paleturquoise" }}>
-          <Row xs={5}>
+          <Row md={5}>
             {cityForecast.map((city, index) => (
               <Col key={index}>
                 {isLoading ? (
