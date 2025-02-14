@@ -16,16 +16,14 @@ function App() {
     setLat(newLat);
   };
   return (
-    <>
-      <BrowserRouter>
-        <MyNavBar handleSearch={handleSearch} />
-        <Routes>
-          {/* <WeatherCard long={long} lat={lat} header="Today's Forecast" header2="Forecast for the next hours:" /> */}
-          <Route path="/" element={<MyHomePage long={long} lat={lat} />} />
-          <Route path="/MyCity" element={<MyCity long={9.1896346} lat={45.4641943} />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <MyNavBar handleSearch={handleSearch} />
+      <Routes>
+        {/* <WeatherCard long={long} lat={lat} header="Today's Forecast" header2="Forecast for the next hours:" /> */}
+        <Route path="/" element={<MyHomePage long={long} lat={lat} />} />
+        <Route path="/MyCity" element={<MyCity long={9.1896346} lat={45.4641943} />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
